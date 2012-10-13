@@ -2,9 +2,7 @@
 " Arpeggio lets us define key-chord combos (simultaneous key presses)
 call arpeggio#load()
 
-" ========================================
-" General vim sanity improvements
-" ========================================
+" General vim sanity improvements {
 "
 "
 "The default leader is '\', but many people prefer ',' as it's in a standard
@@ -28,10 +26,9 @@ nnoremap ,ow "_diwhp
 
 "make Y consistent with C and D (I'm not convinced)
 " nnoremap Y y$
+" }
 
-" ========================================
-" RSI Prevention - keyboard remaps
-" ========================================
+" RSI Prevention - keyboard remaps {
 " Certain things we do every day as programmers stress
 " out our hands. For example, typing underscores and
 " dashes are very common, and in position that require
@@ -72,6 +69,8 @@ vmap ,] c[<C-R>"]<ESC>
 
 " ,{ Surround a word with {braces}
 map ,} ysiw}
+
+
 map ,{ ysiw{
 vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
@@ -100,6 +99,7 @@ nnoremap ,. '.
 " the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
 " put the cursor right after the quote
 imap <C-a> <esc>wa
+" }
 
 " ==== NERD tree
 " Cmd-Shift-N for nerd tree
@@ -271,6 +271,20 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap ' `
 nnoremap ` '
 
+ " Fugitive {
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+ "}
+
+ " UndoTree {
+    nnoremap <Leader>u :UndotreeToggle<CR>
+ " }
+
 " Tabularize {
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
@@ -299,21 +313,19 @@ nnoremap ` '
   endfunction
 " }
 
-" ============================
-" SplitJoin plugin
-" ============================
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+" SplitJoin plugin {
+    nmap sj :SplitjoinSplit<cr>
+    nmap sk :SplitjoinJoin<cr>
+" }
 
-" ============================
-" vim-ruby-conque
-" ============================
+" vim-ruby-conque {
 " Cmd-Shift-R for RSpec
-nmap <silent> <D-R> :call RunRspecCurrentFileConque()<CR>
+" nmap <silent> <D-R> :call RunRspecCurrentFileConque()<CR>
 " Cmd-Shift-L for RSpec Current Line
-nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
+" nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
 " ,Cmd-R for Last conque command
-nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
+" nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
+" }
 
 " Get the current highlight group. Useful for then remapping the color
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
@@ -328,7 +340,7 @@ vnoremap / /\v
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
+nnoremap <leader>em <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
 
 " Easier linewise reselection
 map <leader>v V`]

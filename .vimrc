@@ -266,20 +266,6 @@
         endif
      " }
 
-     " Fugitive {
-        nnoremap <silent> <leader>gs :Gstatus<CR>
-        nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gw :Gwrite<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
-        nnoremap <silent> <leader>gb :Gblame<CR>
-        nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-     "}
-
-     " UndoTree {
-        nnoremap <Leader>u :UndotreeToggle<CR>
-     " }
-
      " indent_guides {
         if !exists('g:spf13_no_indent_guides_autocolor')
             let g:indent_guides_auto_colors = 1
@@ -288,7 +274,7 @@
             autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#212121   ctermbg=3
             autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#404040 ctermbg=4
         endif
-        set ts=4 sw=4 et
+        " set ts=4 sw=4 et
         let g:indent_guides_start_level = 2
         let g:indent_guides_guide_size = 1
         let g:indent_guides_enable_on_vim_startup = 1
