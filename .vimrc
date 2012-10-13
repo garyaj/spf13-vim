@@ -164,10 +164,10 @@
 " Formatting {
     set nowrap                      " wrap long lines
     set autoindent                  " indent at the same level of the previous line
-    set shiftwidth=4                " use indents of 4 spaces
+    set shiftwidth=2                " use indents of 4 spaces
     set expandtab                   " tabs are spaces, not tabs
-    set tabstop=4                   " an indentation every four columns
-    set softtabstop=4               " let backspace delete indent
+    set tabstop=2                   " an indentation every four columns
+    set softtabstop=2               " let backspace delete indent
     "set matchpairs+=<:>                " match, to be used with %
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
@@ -225,7 +225,7 @@
     endif
 
     " Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
+    " nnoremap Y y$
 
     """ Code folding options
     nmap <leader>f0 :set foldlevel=0<CR>
@@ -417,6 +417,7 @@
      " Fugitive {
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>gc :Gcommit<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>

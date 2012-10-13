@@ -1,4 +1,5 @@
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" unlet g:ctrlp_custom_ignore
+" let g:ctrlp_custom_ignore = '\.(git|hg|svn)$'
 
 " Default to filename searches - so that appctrl will find application
 " controller
