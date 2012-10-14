@@ -238,27 +238,6 @@
         nmap <leader>ss :SessionSave<CR>
      " }
 
-     " JSON {
-        nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-     " }
-
-     " PyMode {
-        " let g:pymode_lint_checker = "pyflakes"
-     " }
-
-     " ctrlp {
-        let g:ctrlp_working_path_mode = 2
-        nnoremap <silent> <D-t> :CtrlP<CR>
-        nnoremap <silent> <D-r> :CtrlPMRU<CR>
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
-     "}
-
-     " TagBar {
-        nnoremap <silent> <leader>tt :TagbarToggle<CR>
-     "}
-
      " PythonMode {
      " Disable if python support not present
         if !has('python')

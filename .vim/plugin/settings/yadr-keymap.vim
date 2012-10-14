@@ -1,10 +1,9 @@
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
 " Arpeggio lets us define key-chord combos (simultaneous key presses)
 call arpeggio#load()
 
-" General vim sanity improvements {
-"
-"
+" General vim sanity improvements {{{
+
 "The default leader is '\', but many people prefer ',' as it's in a standard
 "location. To override this behavior and set it back to '\' (or any other
 "character) add let g:spf13_leader='\' in your .vimrc.bundles.local file
@@ -26,9 +25,9 @@ nnoremap ,ow "_diwhp
 
 "make Y consistent with C and D (I'm not convinced)
 " nnoremap Y y$
-" }
+" }}}
 
-" RSI Prevention - keyboard remaps {
+" RSI Prevention - keyboard remaps {{{
 " Certain things we do every day as programmers stress
 " out our hands. For example, typing underscores and
 " dashes are very common, and in position that require
@@ -69,8 +68,6 @@ vmap ,] c[<C-R>"]<ESC>
 
 " ,{ Surround a word with {braces}
 map ,} ysiw}
-
-
 map ,{ ysiw{
 vmap ,} c{ <C-R>" }<ESC>
 vmap ,{ c{<C-R>"}<ESC>
@@ -99,13 +96,14 @@ nnoremap ,. '.
 " the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
 " put the cursor right after the quote
 imap <C-a> <esc>wa
-" }
+" }}}
 
-" ==== NERD tree
+" NERD tree {{{
 " Cmd-Shift-N for nerd tree
 nmap <D-N> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 " Open the project tree and expose current file in the nerdtree with Ctrl-\
 nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
+" }}}
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
 " ,oq to open it back up (rare)
@@ -126,22 +124,21 @@ autocmd FileType rspec map <buffer> <D-k> {
 map <D-/> :TComment<CR>
 imap <D-/> <Esc>:TComment<CR>i
 
-"GitGrep - open up a git grep line, with a quote started for the search
+" GitGrep {{{
+"open up a git grep line, with a quote started for the search
 nnoremap ,gg :GitGrep ""<left>
 "GitGrep Current Partial
 nnoremap ,gcp :GitGrepCurrentPartial<CR>
 "GitGrep Current File
 nnoremap ,gcf :call GitGrep(expand("%:t:r"))<CR>
-
+" }}}
 
 "Move back and forth through previous and next buffers
 "with ,z and ,x
 nnoremap <silent> ,z :bp<CR>
 nnoremap <silent> ,x :bn<CR>
 
-" ==============================
-" Window/Tab/Split Manipulation
-" ==============================
+" Window/Tab/Split Manipulation {{{
 " Move between split windows by using the four directions H, L, I, N
 " (note that  I use I and N instead of J and K because  J already does
 " line joins and K is mapped to GitGrep the current word
@@ -153,16 +150,17 @@ nnoremap <silent> <C-j> <C-w>j
 " Zoom in and out of current window with ,gz
 map <silent> ,gz <C-w>o
 
-" Stupid shift key fixes
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
+" Create window splits easier. The default
+" way is Ctrl-w,v and Ctrl-w,s. I remap
+" this to vv and ss
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
+
+" Resize windows with arrow keys
+nnoremap <D-Up>    <C-w>+
+nnoremap <D-Down>  <C-w>-
+nnoremap <D-Left>  <C-w><
+nnoremap <D-Right> <C-w>>
 
 cmap Tabe tabe
 
@@ -177,7 +175,27 @@ map <silent> <D-7> :tabn 7<cr>
 map <silent> <D-8> :tabn 8<cr>
 map <silent> <D-9> :tabn 9<cr>
 
-""" Code folding options
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+
+" }}}
+
+" Stupid shift key fixes {{{
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+" }}}
+
+" Code folding options {{{
 nmap <leader>f0 :set foldlevel=0<CR>
 nmap <leader>f1 :set foldlevel=1<CR>
 nmap <leader>f2 :set foldlevel=2<CR>
@@ -188,18 +206,7 @@ nmap <leader>f6 :set foldlevel=6<CR>
 nmap <leader>f7 :set foldlevel=7<CR>
 nmap <leader>f8 :set foldlevel=8<CR>
 nmap <leader>f9 :set foldlevel=9<CR>
-
-" Create window splits easier. The default
-" way is Ctrl-w,v and Ctrl-w,s. I remap
-" this to vv and ss
-nnoremap <silent> vv <C-w>v
-nnoremap <silent> ss <C-w>s
-
-" Resize windows with arrow keys
-nnoremap <D-Up> <C-w>+
-nnoremap <D-Down> <C-w>-
-nnoremap <D-Left> <C-w><
-nnoremap <D-Right>  <C-w>>
+" }}}
 
 " Some helpers to edit mode
 " http://vimcasts.org/e/14
@@ -208,9 +215,6 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
 
 " Easier horizontal scrolling
 map zl zL
@@ -222,9 +226,7 @@ map zh zH
 " create <%= foo %> erb tags using Ctrl-j in edit mode
 " imap <silent> <C-J> <%  %><Esc>2hi
 
-" ============================
-" Shortcuts for everyday tasks
-" ============================
+" Shortcuts for everyday tasks {{{
 
 " copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
 " this is helpful to paste someone the path you're looking at
@@ -239,6 +241,7 @@ cmap cd. lcd %:p:h
 " visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
+" }}}
 
 " Fix home and end keybindings for screen, particularly on mac
 " - for some reason this fixes the arrow keys too. huh.
@@ -253,6 +256,7 @@ nmap <silent> ,vc yy:<C-f>p<C-c><CR>
 "(v)im (r)eload
 nmap <silent> ,vr :so %<CR>
 
+" Search highlighting {{{
 " Type ,hl to toggle highlighting on/off, and show current value.
 noremap ,hl :set hlsearch! hlsearch?<CR>
 
@@ -262,6 +266,7 @@ nmap <silent> // :nohlsearch<CR>
 " Apple-* Highlight all occurrences of current word (like '*' but without moving)
 " http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
 nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+" }}}
 
 " These are very similar keys. Typing 'a will jump to the line in the current
 " file marked with ma. However, `a will jump to the line and column marked
@@ -271,7 +276,49 @@ nnoremap <D-*> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 nnoremap ' `
 nnoremap ` '
 
- " Fugitive {
+nnoremap <silent> <leader>tt :TagbarToggle<CR>
+nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+
+" CtrlP {{{
+nnoremap <silent> ,t :CtrlPMixed<CR>
+nnoremap <silent> <D-t> :CtrlP<CR>
+nnoremap <silent> <D-r> :CtrlPMRU<CR>
+
+" Additional mapping for buffer search
+" nnoremap <silent> ,b :CloseSingleConque<CR>:CtrlPBuffer<cr>
+" nnoremap <silent> <C-b> :CloseSingleConque<CR>:CtrlPBuffer<cr>
+nnoremap <silent> <C-b> :CtrlPBuffer<cr>
+
+" Cmd-Shift-P to clear the cache
+nnoremap <silent> <D-P> :ClearCtrlPCache<cr>
+
+    " Jump to Ruby structures {{{
+    " Idea from : http://www.charlietanksley.net/blog/blog/2011/10/18/vim-navigation-with-lustyexplorer-and-lustyjuggler/
+    " Open CtrlP starting from a particular path, making it much
+    " more likely to find the correct thing first. mnemonic 'jump to [something]'
+    " map ,jm :CloseSingleConque<CR>:CtrlP app/models<CR>
+    " map ,jc :CloseSingleConque<CR>:CtrlP app/controllers<CR>
+    " map ,jv :CloseSingleConque<CR>:CtrlP app/views<CR>
+    " map ,jh :CloseSingleConque<CR>:CtrlP app/helpers<CR>
+    " map ,jl :CloseSingleConque<CR>:CtrlP lib<CR>
+    " map ,jp :CloseSingleConque<CR>:CtrlP public<CR>
+    " map ,js :CloseSingleConque<CR>:CtrlP spec<CR>
+    " map ,jf :CloseSingleConque<CR>:CtrlP fast_spec<CR>
+    " map ,jd :CloseSingleConque<CR>:CtrlP db<CR>
+    " map ,jC :CloseSingleConque<CR>:CtrlP config<CR>
+    " map ,jV :CloseSingleConque<CR>:CtrlP vendor<CR>
+    " map ,jF :CloseSingleConque<CR>:CtrlP factories<CR>
+    " map ,jT :CloseSingleConque<CR>:CtrlP test<CR>
+
+    "Cmd-(m)ethod - jump to a method (tag in current file)
+    " map ,m :CloseSingleConque<CR>:CtrlPBufTag<CR>
+
+    "Ctrl-(M)ethod - jump to a method (tag in all files)
+    " map ,M :CloseSingleConque<CR>:CtrlPBufTagAll<CR>
+    " }}}
+" }}}
+
+ " Fugitive {{{
     nnoremap <silent> <leader>gs :Gstatus<CR>
     nnoremap <silent> <leader>gd :Gdiff<CR>
     nnoremap <silent> <leader>gw :Gwrite<CR>
@@ -279,13 +326,13 @@ nnoremap ` '
     nnoremap <silent> <leader>gb :Gblame<CR>
     nnoremap <silent> <leader>gl :Glog<CR>
     nnoremap <silent> <leader>gp :Git push<CR>
- "}
+ " }}}
 
- " UndoTree {
+ " UndoTree {{{
     nnoremap <Leader>u :UndotreeToggle<CR>
- " }
+ " }}}
 
-" Tabularize {
+" Tabularize {{{
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:<CR>
@@ -311,21 +358,21 @@ nnoremap ` '
         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
       endif
   endfunction
-" }
+" }}}
 
-" SplitJoin plugin {
+" SplitJoin plugin {{{
     nmap sj :SplitjoinSplit<cr>
     nmap sk :SplitjoinJoin<cr>
-" }
+" }}}
 
-" vim-ruby-conque {
+" vim-ruby-conque {{{
 " Cmd-Shift-R for RSpec
 " nmap <silent> <D-R> :call RunRspecCurrentFileConque()<CR>
 " Cmd-Shift-L for RSpec Current Line
 " nmap <silent> <D-L> :call RunRspecCurrentLineConque()<CR>
 " ,Cmd-R for Last conque command
 " nmap <silent> ,<D-R> :call RunLastConqueCommand()<CR>
-" }
+" }}}
 
 " Get the current highlight group. Useful for then remapping the color
 map ,hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
@@ -359,9 +406,6 @@ nnoremap <leader>r :set ft=perl.rdor<CR>
 
 " Shouldn't need shift
 nnoremap ; :
-
-" Resize splits when the window is resized
-au VimResized * exe "normal! \<c-w>="
 
 " Reuse useless help key.
 noremap  <F1> :set invfullscreen<CR>
