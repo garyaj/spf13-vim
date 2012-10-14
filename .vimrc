@@ -155,6 +155,7 @@
     set winminheight=0              " windows can be 0 line high
     set ignorecase                  " case insensitive search
     set smartcase                   " case sensitive when uc present
+    set gdefault                    " global substitutes by default
     set whichwrap=b,s,h,l,<,>,[,]   " backspace and cursor keys wrap to
 " }
 
