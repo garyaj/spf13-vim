@@ -413,3 +413,28 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
+
+"makes use of register y
+function! StepReplace(...)
+  if a:0 == 1
+    let @y = input("Replace with: ", @y)
+    let y = @y
+    if @y =~ "\\d\\+$"
+      let n = substitute(@y, ".\\{-}\\(\\d\\+\\)$", "\\1", "") + a:1
+      let @y = substitute(@y, "\\(.\\{-}\\)\\d\\+$", "\\1".n, "")
+    endif
+    return y
+  elseif a:0 == 3
+    let @y = a:2
+    execute "%s/".a:1."/\\=StepReplace(".a:3.")/".(&gdefault ? "" : "g")."c"
+  else
+    echo "Usage: SReplace <search> <substitute> <increment>"
+  endif
+endfunction
+
+command -nargs=+ SReplace call StepReplace(<f-args>)
+nnoremap ,sr :SReplace
+
+" Title Case A Line Or Selection (better)
+vnoremap <F6> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
+
