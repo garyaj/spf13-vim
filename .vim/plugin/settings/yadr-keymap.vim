@@ -417,9 +417,13 @@ map <silent> ,hp :!open -a Safari %<CR><CR>
 " Title Case A Line Or Selection (better)
 vnoremap <F6> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
 
-" Tag the visual selection
-vnoremap <F7> :s/\%V\(.*\)/<span id="ix1">\1<\/span>/e<CR>
+" Tag the visual selection as a link
+" vnoremap <F7> :s/\(\%V.*\%V.\)/<a href="#ix1">\1<\/a>/<CR>
+" Tag the visual selection as a destination
+vnoremap <F7> :s/\(\%V.*\%V.\)/<span id="ix1">\1<\/span>/<CR>
+" Replace the tag id with contents of register y
+noremap <F8> :s/ix\d\+/\=@y/<CR>
 " Increment the tag id (uses register y)
-noremap <F8> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
+" noremap <F11> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
 
 " vim:ts=2:sw=2:ai:et
