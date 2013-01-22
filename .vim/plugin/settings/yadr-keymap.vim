@@ -1,6 +1,6 @@
 " vim: set foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
 " Arpeggio lets us define key-chord combos (simultaneous key presses)
-call arpeggio#load()
+" call arpeggio#load()
 
 " General vim sanity improvements {{{
 
@@ -85,8 +85,8 @@ nnoremap <D-)> f)ci)
 nnoremap <D-[> f[ci[
 nnoremap <D-]> f]ci]
 
-"Go to last edit location with ,.
-nnoremap ,. '.
+" Go to last edit location with ,.
+" nnoremap ,. '.
 
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
@@ -392,9 +392,9 @@ nnoremap <leader>em <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
 " Easier linewise reselection
 map <leader>v V`]
 
-" Faster Esc
-inoremap <Esc> <nop>
-Arpeggio inoremap jk  <Esc>
+" Faster Esc (no it's not, it's slower)
+" inoremap <Esc> <nop>
+" Arpeggio inoremap jk  <Esc>
 
 " Easy filetype switching
 nnoremap <leader>T :set ft=tt2<CR>
@@ -415,15 +415,15 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 map <silent> ,hp :!open -a Safari %<CR><CR>
 
 " Title Case A Line Or Selection (better)
-vnoremap <F6> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
+vnoremap <F5> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
 
 " Tag the visual selection as a link
 " vnoremap <F7> :s/\(\%V.*\%V.\)/<a href="#ix1">\1<\/a>/<CR>
 " Tag the visual selection as a destination
-vnoremap <F7> :s/\(\%V.*\%V.\)/<span id="ix1">\1<\/span>/<CR>
+vnoremap <F6> :s/\(\%V.*\%V.\)/<span id="ix1">\1<\/span>/<CR>
+" Increment the tag id (uses register y)
+noremap <F7> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
 " Replace the tag id with contents of register y
 noremap <F8> :s/ix\d\+/\=@y/<CR>
-" Increment the tag id (uses register y)
-" noremap <F11> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
 
-" vim:ts=2:sw=2:ai:et
+" vim:ts=3:sw=2:ai:et
