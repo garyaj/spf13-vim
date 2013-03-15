@@ -330,9 +330,13 @@ nnoremap <silent> <D-P> :ClearCtrlPCache<cr>
 
  " UndoTree {{{
     nnoremap <Leader>u :UndotreeToggle<CR>
+    " If undotree is opened, it is likely one wants to interact with it.
+    let g:undotree_SetFocusWhenToggle=1
  " }}}
 
 " Tabularize {{{
+  nmap <Leader>a& :Tabularize /&<CR>
+  vmap <Leader>a& :Tabularize /&<CR>
   nmap <Leader>a= :Tabularize /=<CR>
   vmap <Leader>a= :Tabularize /=<CR>
   nmap <Leader>a: :Tabularize /:<CR>
