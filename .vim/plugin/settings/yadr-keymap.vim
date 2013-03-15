@@ -388,6 +388,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <leader>em <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
+nnoremap <leader>ek <C-w>s<C-w>j<C-w>L:e $HOME/.vim/plugin/settings/yadr-keymap.vim<cr>
 
 " Easier linewise reselection
 map <leader>v V`]
