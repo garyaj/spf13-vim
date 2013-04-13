@@ -419,6 +419,8 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
 
+"Italicise (in Markdown) visual selection
+vnoremap <F4> :s/\(\%V.*\%V.\)/_\1_/<CR>
 " Title Case A Line Or Selection (better)
 vnoremap <F5> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
 

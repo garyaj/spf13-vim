@@ -6,8 +6,10 @@
         " (the numbers don't show up) so I made it a VimEnter event
         autocmd VimEnter * set guitablabel=%N:\ %t\ %M
 
-        set columns=106
-        set lines=55                " 55 lines of text instead of 24,
+        " set columns=106
+        set columns=142
+        " set lines=55                " 55 lines of text instead of 24,
+        set lines=42                " 55 lines of text instead of 24,
         set guioptions-=T           " remove the toolbar
         set guioptions-=l           " remove the left hand scrollbar
         set guioptions-=L           " remove the left hand scrollbar
@@ -22,10 +24,12 @@
 
         if has("gui_gtk2")
             " set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
-            set guifont=Source\ Code\ Pro\ 20,Inconsolata\ 20,Monaco\ 17
+            " set guifont=Source\ Code\ Pro\ 20,Inconsolata\ 20,Monaco\ 17
+            set guifont=Source\ Code\ Pro\ 16,Inconsolata\ 16,Monaco\ 12
         else
             " set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
-            set guifont=Source\ Code\ Pro:h20,Inconsolata:h20,Monaco:h17
+            " set guifont=Source\ Code\ Pro:h20,Inconsolata:h20,Monaco:h17
+            set guifont=Source\ Code\ Pro:h16,Inconsolata:h16,Monaco:h12
         endif
         if has('gui_macvim')
             set transparency=5          " Make the window slightly transparent
