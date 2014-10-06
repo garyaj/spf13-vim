@@ -50,7 +50,7 @@ map ," ysiw"
 vmap ," c"<C-R>""<ESC>
 
 " ,' Surround a word with 'single quotes'
-map ,' ysiw'
+" map ,' ysiw'
 vmap ,' c'<C-R>"'<ESC>
 
 " ,) or ,( Surround a word with (parens)
@@ -96,13 +96,6 @@ nnoremap <D-]> f]ci]
 " the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
 " put the cursor right after the quote
 imap <C-a> <esc>wa
-" }}}
-
-" NERD tree {{{
-" Cmd-Shift-N for nerd tree
-nmap <D-N> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-" Open the project tree and expose current file in the nerdtree with Ctrl-\
-nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
 " }}}
 
 " ,q to toggle quickfix window (where you have stuff like GitGrep)
@@ -391,8 +384,9 @@ vnoremap / /\v
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>em <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
+nnoremap <leader>ev <C-w>s<C-w>j<C-w>L:e $MYVIMRC<cr>
 nnoremap <leader>ek <C-w>s<C-w>j<C-w>L:e $HOME/.vim/plugin/settings/yadr-keymap.vim<cr>
+nnoremap <leader>sk :source %<cr>
 
 " Easier linewise reselection
 map <leader>v V`]
@@ -419,18 +413,23 @@ inoremap <F1> <ESC>:set invfullscreen<CR>a
 " ,hp = html preview
 map <silent> ,hp :!open -a Safari %<CR><CR>
 
+noremap <F3> :<c-u>execute "normal! :let @x=@x+1\r:let @z=@z+1\r:s/\\%V.*\\%V./\\='ix'.getreg('x')/\r:let @/='ix'.getreg('z')\r+nve"<CR>
 "Italicise (in Markdown) visual selection
 vnoremap <F4> :s/\(\%V.*\%V.\)/_\1_/<CR>
 " Title Case A Line Or Selection (better)
-vnoremap <F5> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
+vnoremap <F2> :s/\%V\<\(\w\)\(\w*\)\>/\u\1\L\2/e<CR>
+" noremap <F5> :<c-u>execute "normal! \"ayw/\\a/\r:nohlsearch\rve\"by\<C-W>j:let @"=@a\r:let @/=substitute(@b, \".*\", \"\\L\\0\", \"\")\rn"<cr>
+noremap <F5> :<c-u>execute "normal! \"ayw/\\a/\r:nohlsearch\rve\"by:wincmd j\r:let @\"=@a\r:@\"\r:let @/=substitute(@b, '.*', '\\L\\0', '')\r-nve"<cr>
 
 " Tag the visual selection as a link
 " vnoremap <F7> :s/\(\%V.*\%V.\)/<a href="#ix1">\1<\/a>/<CR>
 " Tag the visual selection as a destination
-vnoremap <F6> :s/\(\%V.*\%V.\)/<span id="ix1">\1<\/span>/<CR>
+" vnoremap <F6> :s/\(\%V.*%V\)/<span id="ix1">\1<\/span>/<cr>
+vnoremap <F6> :s/\%V.*\%V./\='<span id="ix'.(@y+setreg('y',@y+1)).'">'.submatch(0)."<\/span>"/<cr>
 " Increment the tag id (uses register y)
-noremap <F7> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
+" noremap <F7> :s/ix\d\+/\='ix'.(@y+setreg('y',@y+1))/<CR>
 " Replace the tag id with contents of register y
-noremap <F8> :s/ix\d\+/\=@y/<CR>
+" noremap <F8> :s/ix\d\+/\=@y/<CR>
+noremap <F8> <c-w>k0+
 
 " vim:ts=3:sw=2:ai:et
